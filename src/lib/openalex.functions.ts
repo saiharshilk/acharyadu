@@ -1,5 +1,4 @@
 import { createServerFn } from "@tanstack/react-start";
-import { supabaseAdmin } from "@/integrations/supabase/client.server";
 
 export type ProfessorResult = {
   openalex_id: string;
@@ -15,6 +14,7 @@ export type ProfessorResult = {
 export const searchProfessors = createServerFn({ method: "POST" })
   .inputValidator((d: { collegeName: string; topicName: string }) => d)
   .handler(async ({ data }): Promise<ProfessorResult[]> => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data: rows, error } = await supabaseAdmin
       .from("professors_cache")
       .select("*")
@@ -37,6 +37,7 @@ export const searchProfessors = createServerFn({ method: "POST" })
 export const saveProfessorEmail = createServerFn({ method: "POST" })
   .inputValidator((d: { openalex_id: string; email: string }) => d)
   .handler(async ({ data }) => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin
       .from("professors_cache")
       .update({ email: data.email })
