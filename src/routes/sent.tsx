@@ -3,6 +3,20 @@ import { useEffect, useState } from "react";
 import { getSentEmails, type SentEmail } from "@/lib/email.functions";
 
 export const Route = createFileRoute("/sent")({
+  head: () => ({
+    meta: [
+      { title: "Sent Log — Acharyudu" },
+      {
+        name: "description",
+        content: "Every professor outreach draft you have copied, kept locally on this device.",
+      },
+      { property: "og:title", content: "Sent Log — Acharyudu" },
+      {
+        property: "og:description",
+        content: "Every professor outreach draft you have copied, kept locally on this device.",
+      },
+    ],
+  }),
   component: SentLog,
 });
 
