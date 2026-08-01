@@ -4,20 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -26,6 +12,7 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+  --font-serif: "Times New Roman", Times, serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -137,8 +124,101 @@
     border-color: var(--color-border);
   }
 
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+  html, body {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 700;
   }
+
+  body {
+    color: var(--color-foreground);
+    background-color: #f5f2ea;
+    min-height: 100vh;
+  }
+
+  .dark body {
+    background-color: #0b1020;
+  }
+
+  /* Serif looks best with tighter body copy */
+  input, select, textarea, button {
+    font-family: inherit;
+    font-weight: 700;
+  }
+
+  strong, b, h1, h2, h3, h4, h5, h6 {
+    font-weight: 800;
+  }
+}
+
+
+/* ---------- Liquid Glass utilities ---------- */
+
+@utility glass {
+  position: relative;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.65) inset,
+    0 -1px 0 rgba(255, 255, 255, 0.2) inset,
+    0 10px 30px -12px rgba(30, 41, 82, 0.25),
+    0 4px 12px -6px rgba(30, 41, 82, 0.15);
+}
+
+@utility glass-strong {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 -1px 0 rgba(255, 255, 255, 0.25) inset,
+    0 20px 50px -18px rgba(30, 41, 82, 0.35),
+    0 8px 20px -8px rgba(30, 41, 82, 0.2);
+}
+
+@utility glass-panel {
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.55) inset,
+    0 8px 24px -14px rgba(30, 41, 82, 0.25);
+}
+
+@utility glass-input {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.dark .glass,
+.dark [class~="glass"] {
+  background: rgba(20, 25, 45, 0.35);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 10px 30px -12px rgba(0, 0, 0, 0.55);
+}
+.dark .glass-strong { background: rgba(20, 25, 45, 0.55); border-color: rgba(255, 255, 255, 0.15); }
+.dark .glass-panel { background: rgba(20, 25, 45, 0.4); border-color: rgba(255, 255, 255, 0.12); }
+.dark .glass-input { background: rgba(20, 25, 45, 0.5); border-color: rgba(255, 255, 255, 0.15); color: var(--color-foreground); }
+
+/* Optional subtle refraction distortion via SVG turbulence.
+   Add className="glass-refract" to enhance the "liquid" feel. */
+.glass-refract {
+  filter: url(#lg-distortion);
+}
+
+/* Specular highlight sweep on hover for a subtle "glass" gleam */
+.glass, .glass-strong, .glass-panel {
+  overflow: hidden;
+}
+.glass::before, .glass-strong::before, .glass-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 40%);
+  mix-blend-mode: screen;
+  opacity: 0.6;
 }
