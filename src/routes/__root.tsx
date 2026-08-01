@@ -119,7 +119,15 @@ function RootComponent() {
       <div className="min-h-screen text-graphite" style={{ fontFamily: "var(--font-die-grotesk-b)" }}>
         {/* Navigation */}
         <header className="sticky top-2 z-40 mx-auto max-w-[1200px] px-4">
-          <div className="flex items-center justify-center gap-[6px] py-3">
+          <div className="flex items-center justify-between gap-[6px] py-3">
+            <Link
+              to="/"
+              className="text-[21px] font-medium tracking-[-0.02em] text-graphite no-underline"
+              style={{ fontFamily: "var(--font-die-grotesk-b)" }}
+            >
+              Acharyudu
+            </Link>
+            <div className="flex items-center gap-[6px]">
             <Link
               to="/"
               activeOptions={{ exact: true }}
@@ -142,6 +150,7 @@ function RootComponent() {
             >
               <span className="text-[12px] mr-1">+</span> Sent Log
             </Link>
+            </div>
           </div>
         </header>
 
