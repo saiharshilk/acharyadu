@@ -12,6 +12,22 @@ import { generateEmailDraft, addSentEmail } from "@/lib/email.functions";
 import { getProfile, type ProfileData } from "@/lib/profile.functions";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Acharyudu — Find Professors, Copy a Personalized Draft" },
+      {
+        name: "description",
+        content:
+          "Search machine learning professors by school, generate a personalized outreach draft, and copy it into your own email.",
+      },
+      { property: "og:title", content: "Acharyudu — Find Professors, Copy a Personalized Draft" },
+      {
+        property: "og:description",
+        content:
+          "Search machine learning professors by school, generate a personalized outreach draft, and copy it into your own email.",
+      },
+    ],
+  }),
   component: SearchAndSend,
 });
 
