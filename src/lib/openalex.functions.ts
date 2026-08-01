@@ -37,6 +37,7 @@ export const searchProfessors = createServerFn({ method: "POST" })
 export const saveProfessorEmail = createServerFn({ method: "POST" })
   .inputValidator((d: { openalex_id: string; email: string }) => d)
   .handler(async ({ data }) => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin
       .from("professors_cache")
       .update({ email: data.email })
