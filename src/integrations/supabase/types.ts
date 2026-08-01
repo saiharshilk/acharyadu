@@ -14,7 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      professors_cache: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          institution: string | null
+          latest_paper_abstract: string | null
+          latest_paper_title: string | null
+          latest_paper_year: number | null
+          name: string
+          openalex_id: string | null
+          topic: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          institution?: string | null
+          latest_paper_abstract?: string | null
+          latest_paper_title?: string | null
+          latest_paper_year?: number | null
+          name: string
+          openalex_id?: string | null
+          topic?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          institution?: string | null
+          latest_paper_abstract?: string | null
+          latest_paper_title?: string | null
+          latest_paper_year?: number | null
+          name?: string
+          openalex_id?: string | null
+          topic?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
