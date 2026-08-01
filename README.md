@@ -34,16 +34,20 @@ bun install
 bun run dev
 ```
 
-Create a `.env.local` in the project root:
+Create a `.env.local` in the project root (copy from `.env.example`):
 
 ```bash
 VITE_SUPABASE_URL=https://<project-ref>.supabase.co
 VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_xxx
+VITE_SUPABASE_PROJECT_ID=<project-ref>
 SUPABASE_URL=https://<project-ref>.supabase.co
 SUPABASE_PUBLISHABLE_KEY=sb_publishable_xxx
 SUPABASE_SERVICE_ROLE_KEY=sb_secret_xxx
 LOVABLE_API_KEY=lvbl_xxx
 ```
 
+- `VITE_SUPABASE_URL` / `VITE_SUPABASE_PUBLISHABLE_KEY` / `VITE_SUPABASE_PROJECT_ID` — used by the browser/SSR publishable client.
+- `SUPABASE_SERVICE_ROLE_KEY` — **required for "Find Professors" to work.** The professor search uses a server function that reads from `professors_cache` with the admin client; without this key the server function throws and the search results screen goes blank.
 - `SUPABASE_*` credentials come from your Supabase project settings → API.
-- `LOVABLE_API_KEY` comes from your Lovable Cloud dashboard.
+- `LOVABLE_API_KEY` comes from your Lovable Cloud dashboard and is needed for AI-generated email drafts.
+
