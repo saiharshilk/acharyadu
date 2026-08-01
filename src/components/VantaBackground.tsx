@@ -15,8 +15,9 @@ export function VantaBackground() {
     (async () => {
       const THREE = await import("three");
       // @ts-expect-error - vanta has no bundled types
-      const FOG = (await import("vanta/dist/vanta.fog.min")).default;
-      if (cancelled || !ref.current) return;
+      const mod = await import("vanta/dist/vanta.fog.min");
+      const FOG = typeof mod.default === "function" ? mod.default : mod.default?.default;
+      if (!FOG || cancelled || !ref.current) return;
       localEffect = FOG({
         el: ref.current,
         THREE,
