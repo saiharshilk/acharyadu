@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Animated Vanta.js FOG background. Client-only (WebGL + THREE).
- * Sits fixed behind all content.
+ * Animated Vanta.js FOG background — brutalist monochrome edition.
+ * Client-only (WebGL + THREE). Sits fixed behind the dark hero.
  */
 export function VantaBackground() {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -26,13 +26,13 @@ export function VantaBackground() {
         gyroControls: false,
         minHeight: 200.0,
         minWidth: 200.0,
-        highlightColor: 0xffc7d9,
-        midtoneColor: 0x8aa9ff,
-        lowlightColor: 0x6ee7d0,
-        baseColor: 0xf5f2ea,
-        blurFactor: 0.6,
-        speed: 1.2,
-        zoom: 0.9,
+        highlightColor: 0xff6436,
+        midtoneColor: 0x3c3a3e,
+        lowlightColor: 0x161616,
+        baseColor: 0x161616,
+        blurFactor: 0.5,
+        speed: 0.8,
+        zoom: 0.95,
       });
       setEffect(localEffect);
     })();
