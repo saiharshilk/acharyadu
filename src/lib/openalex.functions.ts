@@ -1,5 +1,4 @@
 import { createServerFn } from "@tanstack/react-start";
-import { supabaseAdmin } from "@/integrations/supabase/client.server";
 
 export type ProfessorResult = {
   openalex_id: string;
