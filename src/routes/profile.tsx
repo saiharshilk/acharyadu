@@ -3,6 +3,22 @@ import { useEffect, useState } from "react";
 import { getProfile, saveProfile, type ProfileData, EMPTY_PROFILE } from "@/lib/profile.functions";
 
 export const Route = createFileRoute("/profile")({
+  head: () => ({
+    meta: [
+      { title: "My Info — Acharyudu" },
+      {
+        name: "description",
+        content:
+          "Save your name, grade, school and current project so every professor draft is personalized.",
+      },
+      { property: "og:title", content: "My Info — Acharyudu" },
+      {
+        property: "og:description",
+        content:
+          "Save your name, grade, school and current project so every professor draft is personalized.",
+      },
+    ],
+  }),
   component: ProfilePage,
 });
 
