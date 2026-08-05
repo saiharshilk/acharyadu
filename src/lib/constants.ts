@@ -9,6 +9,7 @@ export const COLLEGES = [
   { name: "UCSF" },
   { name: "Duke" },
   { name: "Brown" },
+  { name: "Vanderbilt" },
 ] as const;
 
 // Only ML for now.
